@@ -1,11 +1,13 @@
 <template>
   <div class="home">
-    <MainBoard msg="Welcome to Your Vue.js App"/>
+    <keep-alive>  
+      <MainBoard />
+    </keep-alive>  
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
+
 import MainBoard from '@/components/MainBoard.vue';
 
 export default {
