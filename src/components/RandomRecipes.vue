@@ -2,7 +2,7 @@
     <div>
         <div class="random-recipe" v-for="recipe in randomRecipes" :key="recipe.title">
             <h2>{{recipe.title}}</h2> 
-            <p><router-link :to="`/recipe/fresh/${recipe.id}`">See Full Recipe</router-link></p>
+            <p><router-link :to="`/recipe/fresh/${recipe.id}`">View Full Recipe</router-link></p>
             <img :src="recipe.image" alt="">
             <p v-html="recipe.summary"></p>
             <SaveRecipeButton :recipe="recipe" />

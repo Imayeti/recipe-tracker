@@ -1,4 +1,4 @@
-# stock-tracker
+# recipe-tracker
 
 ## Project setup
 ```

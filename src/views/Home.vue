@@ -1,6 +1,6 @@
 <template>
   <div class="home container">
-      <h1>Fresh Recipes</h1>
+      <h1>Fresh Cooks</h1>
       <div class="small-hr"></div>
       <MainBoard />
   </div>

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link class="nav-link" to="/">Fresh Recipes</router-link> 
+      <router-link class="nav-link" to="/">Home</router-link> 
       <router-link class="nav-link" to="/saved-recipes">Your Recipes
         <transition name="slide-fade" mode="out-in">
           <span :key="recipesCount">
@@ -9,7 +9,6 @@
           </span>
         </transition>
       </router-link> 
-      <router-link class="nav-link" to="/about">About</router-link> 
     </div>
     <router-view/>
   </div>
@@ -38,9 +37,7 @@ export default {
     },
   },
   created() {
-    // this.recipeIdCounter = this.savedRecipes !== [] ? this.savedRecipes.length + 1 : 1;
-    // this.getRandomRecipes();
-    // this.randomRecipes = this.$recipeObject.recipes;
+    this.getRandomRecipes();
   },
 };
 
