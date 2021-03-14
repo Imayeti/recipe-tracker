@@ -3,6 +3,22 @@
     <h1>{{recipe.title}}</h1>
     <img :src="recipe.image" alt="">
     <p v-html="recipe.summary"></p>
+    <div class="short-info">
+        <p>Dairy Free: {{recipe.dairyFree}}</p>
+        <p>Gluten Free: {{recipe.glutenFree}}</p>
+        <p>Health Score: {{recipe.healthScore}}</p>
+    </div>
+    <div class="lower-text">
+        <h4>Ingredients</h4>
+        <ol>
+            <li v-for="ingredient in recipe.extendedIngredients" :key="ingredient.id">
+                {{ingredient.original}}
+            </li>
+        </ol>
+        <h4>Instructions</h4>
+        <p  v-html="recipe.instructions"></p>
+    </div>
+    
     
     <SaveRecipeButton :saved="saved" :recipe="recipe" />
   </div>
@@ -27,7 +43,8 @@ export default {
     data() {
         return {
             recipe: {},
-            saved: false
+            saved: false,
+            
         };
     },
     created() {
@@ -43,3 +60,31 @@ export default {
 };
 
 </script>
+
+<style scoped lang="scss">
+.short-info {
+    p {
+        display: inline-block;
+        padding: 10px;
+    }
+}
+ul {
+    text-align: left;
+}
+li {
+    display: block;
+    list-style-type: disc;
+}
+h1 {
+    margin-bottom: calc(15px + 1vw);
+}
+.lower-text {
+    text-align: left;
+    ol {
+        padding-inline-start: calc(15px + 3vw);
+    }
+    h4 {
+        padding-left: calc(15px + 3vw);
+    }
+}
+</style>
