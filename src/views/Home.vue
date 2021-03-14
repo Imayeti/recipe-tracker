@@ -1,8 +1,8 @@
 <template>
-  <div class="home">
-    <keep-alive>  
+  <div class="home container">
+      <h1>Fresh Recipes</h1>
+      <div class="small-hr"></div>
       <MainBoard />
-    </keep-alive>  
   </div>
 </template>
 

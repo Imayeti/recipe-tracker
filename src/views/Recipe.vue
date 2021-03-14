@@ -4,7 +4,7 @@
     <img :src="recipe.image" alt="">
     <p v-html="recipe.summary"></p>
     
-    <SaveRecipeButton :recipe="recipe" />
+    <SaveRecipeButton :saved="saved" :recipe="recipe" />
   </div>
 </template>
 
@@ -27,16 +27,16 @@ export default {
     data() {
         return {
             recipe: {},
+            saved: false
         };
     },
-    mounted() {
+    created() {
         if(this.$route.params.type === 'fresh'){
-            console.log(this.$route.params.id);
             this.recipe = this.randomRecipes.find((x) => x.id === parseInt(this.$route.params.id));
         }else if(this.$route.params.type === 'saved') {
+            this.saved = true;
             this.recipe = this.savedRecipes.find((x) => x.id === parseInt(this.$route.params.id));
         }
-       
     },
     methods: {
     },

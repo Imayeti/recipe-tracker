@@ -1,12 +1,16 @@
 <template>
     <div class="container">
         <h1>Your Recipes</h1>
-        <div class="saved-recipe" v-for="recipe in savedRecipes" :key="recipe.id">
-            <div class="saved-recipe-inner">
-                <router-link class="recipe-title" :to="`/recipe/saved/${recipe.id}`">{{recipe.title}}</router-link>
-                <button @click="deleteRecipe(recipe)">X</button>
+        <div class="small-hr"></div>
+        <div class="saved-recipes">
+            <div  v-for="recipe in savedRecipes" :key="recipe.id">
+                <div class="saved-recipe-inner">
+                    <router-link class="recipe-title" :to="`/recipe/saved/${recipe.id}`">{{recipe.title}}</router-link>
+                    <button @click="deleteRecipe(recipe)">X</button>
+                </div>
             </div>
         </div>
+        
     </div>
 </template>
 
@@ -41,6 +45,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
     button {
+        box-shadow: none;
         transition: ease all .2s;
         padding: 2px 6px;
         background-color: transparent;
@@ -50,6 +55,9 @@ export default {
             background-color: rgb(255, 190, 175);
             cursor: pointer;
         }
+    }
+    .saved-recipes {
+        margin-top: calc(25px + 2vw) ;
     }
     .saved-recipe-inner {
         display: inline-block;

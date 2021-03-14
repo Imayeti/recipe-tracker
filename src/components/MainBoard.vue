@@ -1,7 +1,8 @@
 <template>
   <div>
-    <div class="container">
-      <button @click="getRandomRecipes">Get Random Recipes</button>
+    <div class="main-board">
+      <button @click="getRandomRecipes">Get Fresh Recipes!</button>
+      <div class="big-hr"></div>
       <RandomRecipes :randomRecipes="randomRecipes" />
     </div>
   </div>
@@ -34,19 +35,10 @@ export default {
       'getRandomRecipes',
     ]),
   },
-  beforeCreate(){
-    
-  },
-  created() {
-    // this.recipeIdCounter = this.savedRecipes !== [] ? this.savedRecipes.length + 1 : 1;
-    // this.getRandomRecipes();
-    // this.randomRecipes = this.$recipeObject.recipes;
-  },
 };
 
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
 h3 {
   margin: 40px 0 0;
@@ -62,28 +54,8 @@ li {
 a {
   color: #42b983;
 }
-.container {
-
-  max-width: 900px;
-  margin: 0 auto;
-  padding: calc(50px + 5vw)  calc(20px + 1vw);
-}
-img {
-  width: 100%;
-  max-width: 350px;
-}
-button {
-  padding: 10px 15px;
-  background-color: #42b983;
-  border: none;
-  color: white;
-  font-weight: bold;
-  font-size: calc(16px + .1vw);
-  transition: ease all .2s;
-  &:hover {
-    background-color: #5dcb99;
-    cursor: pointer;
-  }
+.main-board {
+  margin-top: calc(25px + 2vw);
 }
 </style>
 
