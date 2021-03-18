@@ -1,5 +1,5 @@
 
-export default {"recipes" : [
+export default  {"recipes" : [
     {
       "vegetarian": true,
       "vegan": false,
@@ -2313,3 +2313,5 @@ export default {"recipes" : [
     }
 ]
 };
+
+// console.log(randomRecipes.recipes[0].id);
