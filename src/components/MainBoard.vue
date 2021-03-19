@@ -1,11 +1,16 @@
 <template>
   <div>
+
     <div class="main-board">
-      <button @click="getRandomRecipes">Get Fresh Recipes!</button>
+      <button @click="getRandomRecipes">Get Fresh Recipes!!</button>
+
       <div class="big-hr"></div>
       <RandomRecipes :randomRecipes="randomRecipes" />
     </div>
   </div>
+
+
+
 </template>
 
 <script>
@@ -16,7 +21,7 @@ import RandomRecipes from '@/components/RandomRecipes.vue';
 export default {
   name: 'MainBoard',
   components: {
-    RandomRecipes
+    RandomRecipes,
   },
   computed: {
     ...mapState([
@@ -26,6 +31,21 @@ export default {
   },
   data() {
     return {
+      myArray: [
+        
+        {
+          name: 'hi',
+          id:1
+        },
+        {
+          name: 'hello',
+          id:2
+        },
+         {
+          name: 'wassup',
+          id:3
+        }
+      ],
     };
   },
   methods: {

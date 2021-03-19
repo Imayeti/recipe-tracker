@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link class="nav-link" to="/">Home</router-link> 
-      <router-link class="nav-link" to="/saved-recipes">Your Recipes
+      <router-link class="nav--link" to="/">Home</router-link> 
+      <router-link class="nav--link" to="/saved-recipes">Your Recipes
         <transition name="slide-fade" mode="out-in">
           <span :key="recipesCount">
             ({{recipesCount}})
@@ -31,11 +31,6 @@ export default {
       'recipesCount'
     ])
   },
-  watch: {
-    recipesCount: function () {
-      console.log('new recipe added!');
-    },
-  },
   created() {
     this.getRandomRecipes();
   },
@@ -61,7 +56,7 @@ export default {
   width: 100%;
   background-color: #0d653d;
   color: white;
-  .nav-link {
+  .nav--link {
     padding: 10px calc(10px + .3vw);
     font-size: 18px;
     letter-spacing: .7px;
@@ -94,13 +89,13 @@ export default {
     opacity: 0;
   }
 }
+a {
+  &:hover {
+    color: #42b983;
+  }
+}
 h1 {
   margin: 0;
-}
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: calc(50px + 5vw)  calc(20px + 1vw);
 }
 img {
   width: 100%;
@@ -120,6 +115,11 @@ button {
     cursor: pointer;
   }
   &:focus {outline:0;}
+}
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: calc(50px + 5vw)  calc(20px + 1vw);
 }
 .small-hr {
   margin: 0 auto;

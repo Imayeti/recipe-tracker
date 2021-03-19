@@ -22,8 +22,6 @@ export default {
             'addRecipe',
         ]),
         addRecipeHandler(recipe) {
-            // trigger and animation showing that it has been added
-            // give feedback of already added recipe
             this.addRecipe(recipe)
             this.toggleButtonText();
         },
@@ -43,8 +41,6 @@ export default {
     mounted() {
         this.toggleButtonText();
     }
-
-
 };
 
 </script>

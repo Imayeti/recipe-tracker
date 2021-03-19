@@ -4,8 +4,8 @@
     <img :src="recipe.image" alt="">
     <p v-html="recipe.summary"></p>
     <div class="short-info">
-        <p>Dairy Free: {{recipe.dairyFree}}</p>
-        <p>Gluten Free: {{recipe.glutenFree}}</p>
+        <p>Dairy Free: {{recipe.dairyFree ? 'Yes' : 'No'}}</p>
+        <p>Gluten Free: {{recipe.glutenFree ? 'Yes' : 'No'}}</p>
         <p>Health Score: {{recipe.healthScore}}</p>
     </div>
     <div class="lower-text">
@@ -18,8 +18,6 @@
         <h4>Instructions</h4>
         <p  v-html="recipe.instructions"></p>
     </div>
-    
-    
     <SaveRecipeButton :saved="saved" :recipe="recipe" />
   </div>
 </template>
@@ -62,12 +60,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.short-info {
-    p {
-        display: inline-block;
-        padding: 10px;
-    }
-}
 ul {
     text-align: left;
 }
@@ -85,6 +77,13 @@ h1 {
     }
     h4 {
         padding-left: calc(15px + 3vw);
+    }
+}
+.short-info {
+    p {
+        display: inline-block;
+        padding: 10px;
+        font-weight: bold;
     }
 }
 </style>
