@@ -31,14 +31,15 @@ export default {
       randomRecipes.map((recipe) => recipe.category = 'unassigned');
       state.randomRecipes = randomRecipes;
     },
-    // updateSavedRecipesList: (state, savedRecipes) => {
-    //   savedRecipes.map((recipe) => recipe.category = 'unassigned');
-    //   console.log('savedRecipes',savedRecipes);
+    updateSavedRecipesList: (state, savedRecipes) => {
+      savedRecipes.map((recipe) => recipe.category = 'unassigned');
+      console.log('savedRecipes',savedRecipes);
 
-    //   state.savedRecipes = savedRecipes;
-    // }, 
-    // updateSavedBreakfastRecipesList: (state, savedBreakfastRecipes) => {
-    //   savedBreakfastRecipes.map((recipe) => recipe.category = 'breakfast');
-    //   state.savedBreakfastRecipes = savedBreakfastRecipes;
-    // },
+      state.savedRecipes = savedRecipes;
+    }, 
+    updateSavedBreakfastRecipesList: (state, savedBreakfastRecipes) => {
+      console.log('updating breafast list');
+      savedBreakfastRecipes.map((recipe) => recipe.category = 'breakfast');
+      state.savedBreakfastRecipes = savedBreakfastRecipes;
+    },
 }
