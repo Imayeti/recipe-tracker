@@ -1,7 +1,7 @@
 <template>
   <div class="about container">
     <h1>{{recipe.title}}</h1>
-    <img :src="recipe.image" alt="">
+    <img class="mb-4" :src="recipe.image" alt="">
     <p v-html="recipe.summary"></p>
     <div class="short-info">
       <p>Dairy Free: {{recipe.dairyFree ? 'Yes' : 'No'}}</p>
@@ -11,12 +11,12 @@
     <div class="lower-text">
       <h4>Ingredients</h4>
       <ol>
-        <li  v-for="ingredient in recipe.extendedIngredients" :key="ingredient.id">
+        <li v-for="ingredient in recipe.extendedIngredients" :key="ingredient.id">
           <button @click="addIngredient({ingredient, recipe})">Add</button>{{ingredient.original}} 
         </li>
       </ol>
-      <h4>Instructions</h4>
-      <p  v-html="recipe.instructions"></p>
+      <h4 class="p-0">Instructions</h4>
+      <p v-html="recipe.instructions"></p>
     </div>
     <SaveRecipeButton :recipe="recipe" />
   </div>
@@ -28,41 +28,37 @@ import { mapActions, mapState } from 'vuex'
 import SaveRecipeButton from '@/components/SaveRecipeButton.vue';
 
 export default {
-    name: 'Recipe',
-    components: {
-      SaveRecipeButton
-    },
-    computed: {
-      ...mapState([
-        'recipes',
-        'ingredientsList'
-      ])
-    },
-    data() {
-      return {
-        recipe: {},
-      };
-    },
-    methods: {
-      ...mapActions([
-        'addIngredient'
-      ])
-    },
-    created() {
-      // if(this.$route.params.type === 'fresh'){
-      //   this.recipe = this.recipes.randomRecipes.find((x) => x.id === parseInt(this.$route.params.id));
-      // }else if(this.$route.params.type === 'saved') {
-        //we need to iterate over the recipes object in state to look through every item in each category to find the matching recipe by id so we can display it
-        Object.values(this.recipes).forEach(category => {
-          if(category.length){
-            let recipeSearchResult = category.find((x) => x.id === parseInt(this.$route.params.id));
-             if (recipeSearchResult) {
-                this.recipe = recipeSearchResult;
-            }
-          }
-        });
-      // }
-    },
+  name: 'Recipe',
+  components: {
+    SaveRecipeButton
+  },
+  computed: {
+    ...mapState([
+      'recipes',
+      'ingredientsList'
+    ])
+  },
+  data() {
+    return {
+      recipe: {},
+    };
+  },
+  methods: {
+    ...mapActions([
+      'addIngredient'
+    ])
+  },
+  created() {
+    //we need to iterate over the recipes object in state to look through every item in each category to find the matching recipe by id so we can display it
+    Object.values(this.recipes).forEach(category => {
+      if(category.length){
+        let recipeSearchResult = category.find((x) => x.id === parseInt(this.$route.params.id));
+          if (recipeSearchResult) {
+            this.recipe = recipeSearchResult;
+        }
+      }
+    });
+  },
 };
 
 </script>
@@ -74,30 +70,30 @@ button {
   margin: 5px;
 }
 ul {
-    text-align: left;
+  text-align: left;
 }
 li {
-    display: block;
-    list-style-type: disc;
+  display: block;
+  list-style-type: disc;
 }
 h1 {
-    margin-bottom: calc(15px + 1vw);
+  margin-bottom: calc(15px + 1vw);
 }
 .lower-text {
-    text-align: left;
-    ol {
-        padding-inline-start: calc(15px + 3vw);
-    }
-    h4 {
-        padding-left: calc(15px + 3vw);
-    }
+  text-align: left;
+  ol {
+    padding-inline-start: calc(15px + 3vw);
+  }
+  h4 {
+    padding-left: calc(15px + 3vw);
+  }
 }
 .short-info {
-    p {
-        display: inline-block;
-        padding: 10px;
-        font-weight: bold;
-    }
+  p {
+    display: inline-block;
+    padding: 10px;
+    font-weight: bold;
+  }
 }
 
 </style>

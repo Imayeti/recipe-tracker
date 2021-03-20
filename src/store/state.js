@@ -6,7 +6,7 @@ export default {
     savedBreakfastRecipes: [],
     savedLunchRecipes: [],
     savedDinnerRecipes: [],
-    savedRecipes: [],
+    savedUnassignedRecipes: [],
   },
   ingredientsList: {},
 }

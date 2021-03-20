@@ -138,7 +138,7 @@ button {
 .container {
   max-width: 900px;
   margin: 0 auto;
-  padding: calc(70px + 5vw)  calc(20px + 1vw);
+  padding: calc(80px + 5vw)  calc(20px + 1vw);
 }
 .small-hr {
   margin: 0 auto;

@@ -1,21 +1,12 @@
 <template>
     <div>
-      
-
-       
-          <!-- <div v-for="element in myArray" :key="element.id">{{element.name}}</div> -->
-
-            <div class="random-recipe" v-for="recipe in randomRecipes" :key="recipe.title">
-                <h2>{{recipe.title}}</h2> 
-                <p><router-link :to="`/recipe/fresh/${recipe.id}`">View Full Recipe</router-link></p>
-                <img class="mb-3" :src="recipe.image" alt="">
-                <p v-html="recipe.summary"></p>
-                <SaveRecipeButton :recipe="recipe" />
-            </div>
-
-            
-
-
+      <div class="random-recipe" v-for="recipe in randomRecipes" :key="recipe.title">
+          <h2>{{recipe.title}}</h2> 
+          <p><router-link :to="`/recipe/fresh/${recipe.id}`">View Full Recipe</router-link></p>
+          <img class="mb-3" :src="recipe.image" alt="">
+          <p v-html="recipe.summary"></p>
+          <SaveRecipeButton :recipe="recipe" />
+      </div>
     </div>
 </template>
 

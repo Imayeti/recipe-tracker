@@ -4,13 +4,29 @@
     <div class="small-hr mb-4"></div>
 
     <div class="row">
-      <List title="Breakfast" />
-      <List title="Lunch" />
-      <List title="Dinner" />
+      <div class="col-12 col-lg-4">
+        <List title="Breakfast" />
+      </div>
+      <div class="col-12 col-lg-4">
+        <List title="Lunch" />
+      </div>
+      <div class="col-12 col-lg-4">
+        <List title="Dinner" />
+      </div>
+      
+   
     </div>
     
-    <!-- <List title="Unassigned" /> -->
-    <div class="saved-recipes">
+    <div class="unassigned row mt-5">
+      <div class="col"></div>
+      <div class="col-12 col-lg-4">
+        <List title="Unassigned" />
+      </div>
+   
+      <div class="col"></div>
+    </div>
+
+    <!-- <div class="saved-recipes">
       <draggable v-model="savedRecipes"  group="people">
           <div  
             v-for="recipe in savedRecipes" 
@@ -19,36 +35,36 @@
             <div class="saved-recipe-inner">
               <span><i class="fas fa-expand-arrows-alt"></i></span>
               <router-link class="recipe-title" :to="`/recipe/saved/${recipe.id}`">{{recipe.title}}</router-link>
-              <button class="delete-button" @click="deleteRecipe(recipe, 'unassigned')">X</button>
+              <button class="delete-button" @click="deleteRecipe(recipe)">X</button>
             </div>
           </div>
         </draggable>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
 
 import {  mapState, mapActions  } from 'vuex'
-import draggable from 'vuedraggable'
+// import draggable from 'vuedraggable'
 import List from '@/components/List.vue';
 
 export default {
     name: 'SavedRecipes',
     components: {
-        draggable,
+        // draggable,
         List
     },
     computed: {
       ...mapState([
         'recipes',
       ]),
-      savedRecipes: {
+      savedUnassignedRecipes: {
         get() {
-          return this.$store.state.recipes.savedRecipes
+          return this.$store.state.recipes.savedUnassignedRecipes
         },
         set(value) {
-          this.$store.commit('updateSavedRecipesList', value)
+          this.$store.commit('updateSavedUnassignedRecipesList', value)
         }
       },
       savedBreakfastRecipes: {
@@ -92,7 +108,18 @@ export default {
   #your-recipes {
     &.container {
       max-width: 100vw;
-      padding: calc(50px + 5vw) calc(30px + 1vw);
+      padding: calc(80px + 5vw) calc(30px + 1vw);
+    }
+    .unassigned {
+      .list {
+        border: none;
+        .saved-recipe-inner {
+          font-size: calc(25px + .1vw);
+          i {
+            left: -2px; 
+          }
+        }
+      }
     }
     .list {
       border-radius: 25px;

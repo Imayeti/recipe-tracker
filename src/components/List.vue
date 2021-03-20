@@ -1,7 +1,7 @@
 <template>
 
-  <div class="col-12 col-md-4 list-card ">
-    <h5 class="pt-2">{{title}}</h5>
+  <div  class="list-card ">
+    <h5 class="title pt-2">{{formattedTitle}}</h5>
     <draggable class="list" v-model="recipes" group="people">
       <div  
         v-for="recipe in recipes" 
@@ -31,6 +31,9 @@ export default {
     title: String,
   },
   computed: {
+    formattedTitle: function () {
+      return this.title === 'Unassigned' ? 'Recently Saved' : this.title;
+    },
     storeListName: function () {
       return `saved${this.title}Recipes`;
     },  
