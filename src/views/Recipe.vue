@@ -6,13 +6,14 @@
     <div class="short-info">
       <p>Dairy Free: {{recipe.dairyFree ? 'Yes' : 'No'}}</p>
       <p>Gluten Free: {{recipe.glutenFree ? 'Yes' : 'No'}}</p>
+      <p>Vegetarian: {{recipe.vegetarian ? 'Yes' : 'No'}}</p>
       <p>Health Score: {{recipe.healthScore}}</p>
     </div>
     <div class="lower-text">
       <h4>Ingredients</h4>
       <ol>
         <li v-for="ingredient in recipe.extendedIngredients" :key="ingredient.id">
-          <button @click="addIngredient({ingredient, recipe})">Add</button>{{ingredient.original}} 
+          <button class="add-button" @click="addIngredient({ingredient, recipe})">Add</button>{{ingredient.original}} 
         </li>
       </ol>
       <h4 class="p-0">Instructions</h4>
@@ -64,7 +65,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-button {
+.add-button {
   padding: 0 4px;
   box-shadow: none;
   margin: 5px;

@@ -9,5 +9,10 @@ export default {
     savedUnassignedRecipes: [],
   },
   ingredientsList: {},
+  tags: {
+    "gluten free" : false,
+    "vegetarian" : false, 
+    "dairy free" : false,
+  },
 }
     

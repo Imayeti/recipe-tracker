@@ -7,6 +7,18 @@ function findIndexOfItem(stateItemListName, recipe) {
 }
 
 export default {
+  updateGlutenFreeTag: (state, value) => {
+    console.log(value);
+    state.tags["gluten free"] = value;
+  },
+  updateDairyFreeTag: (state, value) => {
+    console.log(value);
+    state.tags["dairy free"] = value;
+  },
+  updateVegetarianTag: (state, value) => {
+    console.log(value);
+    state.tags["vegetarian"] = value;
+  },
   appendIngredient: (state, {ingredient, recipe}) => {
     // if ingredients from the recipe haven't been added yet, we create the array that we can push all ingredients to 
     if(!state.ingredientsList[recipe.title]) {
