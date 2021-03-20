@@ -18,7 +18,7 @@
             <div class="saved-recipe-inner">
               <span><i class="fas fa-expand-arrows-alt"></i></span>
               <router-link class="recipe-title" :to="`/recipe/saved/${recipe.id}`">{{recipe.title}}</router-link>
-              <button @click="deleteRecipe(recipe, 'unassigned')">X</button>
+              <button class="delete-button" @click="deleteRecipe(recipe, 'unassigned')">X</button>
             </div>
           </div>
         </draggable>
@@ -89,17 +89,6 @@ export default {
 <style  lang="scss">
 
   #your-recipes {
-    button {
-      box-shadow: none;
-      transition: ease all .2s;
-      padding: 2px 6px;
-      background-color: transparent;
-      color: rgb(157, 29, 0);
-      &:hover {
-        background-color: rgb(255, 190, 175);
-        cursor: pointer;
-      }
-    }
     &.container {
       max-width: 100vw;
       padding: calc(50px + 5vw) calc(30px + 1vw);

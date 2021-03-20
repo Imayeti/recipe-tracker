@@ -9,6 +9,7 @@
           </span>
         </transition>
       </router-link> 
+      <router-link class="nav--link" to="/ingredients">Ingredients </router-link>
     </div>
     <router-view/>
   </div>
@@ -113,6 +114,17 @@ button {
     cursor: pointer;
   }
   &:focus {outline:0;}
+}
+.delete-button {
+  box-shadow: none;
+  transition: ease all .2s;
+  padding: 2px 6px;
+  background-color: transparent;
+  color: rgb(157, 29, 0);
+  &:hover {
+    background-color: rgb(255, 190, 175);
+    cursor: pointer;
+  }
 }
 .container {
   max-width: 900px;

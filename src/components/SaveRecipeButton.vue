@@ -1,5 +1,5 @@
 <template>
-    <button v-if="!saved" @click="addRecipeHandler(recipe)">{{buttonText}}</button> 
+  <button v-if="!(this.$route.params.type === 'saved')" @click="addRecipeHandler(recipe)">{{buttonText}}</button> 
 </template>
 
 <script>
@@ -7,40 +7,35 @@
 import { mapActions, mapState } from 'vuex'
 
 export default {
-    name: 'SaveRecipeButton',
-    props: {
-        recipe: Object,
-        saved: Boolean,
+  name: 'SaveRecipeButton',
+  props: {
+    recipe: Object,
+  },
+  data() {
+    return {
+      buttonText: "Save Recipe"
+    };
+  },
+  methods: {
+    ...mapActions([
+      'addRecipe',
+    ]),
+    addRecipeHandler(recipe) {
+      this.addRecipe(recipe)
+      this.toggleButtonText();
     },
-    data() {
-        return {
-            buttonText: "Save Recipe"
-        };
-    },
-    methods: {
-        ...mapActions([
-            'addRecipe',
-        ]),
-        addRecipeHandler(recipe) {
-            this.addRecipe(recipe)
-            this.toggleButtonText();
-        },
-        toggleButtonText() {
-            // console.log('recipe id: ', this.recipe.id);
-            // console.log('this.recipes.savedRecipes: ',this.recipes.savedRecipes);
-            if(this.recipes.savedRecipes.find((x) => x.id === this.recipe.id)){
-                this.buttonText = "Recipe Saved!";
-            } 
-        }
-    },
-    computed: {
-        ...mapState([
-            'recipes',
-        ]),
-    },
-    mounted() {
-        this.toggleButtonText();
+    toggleButtonText() {
+      this.recipe.saved ? this.buttonText = "Recipe Saved!" : this.buttonText =  "Save Recipe" 
     }
+  },
+  computed: {
+    ...mapState([
+      'recipes',
+    ]),
+  },
+  mounted() {
+    this.toggleButtonText();
+  }
 };
 
 </script>

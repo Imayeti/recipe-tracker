@@ -1,10 +1,16 @@
 export default {
     addRecipe: ({commit}, recipe) => {
-        commit('appendRecipe', recipe)
+      commit('appendRecipe', recipe)
     },
     deleteRecipe: ({commit}, recipe) => {
-      console.log(recipe);
-        commit('removeRecipe', recipe)
+      commit('removeRecipe', recipe)
+    },
+    addIngredient: ({commit}, ingredient) => {
+      commit('appendIngredient', ingredient)
+    },
+    deleteIngredient: ({commit}, ingredient) => {
+      console.log(ingredient);
+      commit('removeIngredient', ingredient)
     },
     getRandomRecipes: ({commit}) => {
         let randomRecipes = [];

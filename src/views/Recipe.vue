@@ -11,43 +11,47 @@
     <div class="lower-text">
       <h4>Ingredients</h4>
       <ol>
-        <li v-for="ingredient in recipe.extendedIngredients" :key="ingredient.id">
-          {{ingredient.original}}
+        <li  v-for="ingredient in recipe.extendedIngredients" :key="ingredient.id">
+          <button @click="addIngredient(ingredient)">Add</button>{{ingredient.original}} 
         </li>
       </ol>
       <h4>Instructions</h4>
       <p  v-html="recipe.instructions"></p>
     </div>
-    <SaveRecipeButton :saved="saved" :recipe="recipe" />
+    <SaveRecipeButton :recipe="recipe" />
   </div>
 </template>
 
 <script>
 
-import { mapState } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 import SaveRecipeButton from '@/components/SaveRecipeButton.vue';
 
 export default {
-    name: 'MainBoard',
+    name: 'Recipe',
     components: {
       SaveRecipeButton
     },
     computed: {
       ...mapState([
         'recipes',
+        'ingredientsList'
       ])
     },
     data() {
       return {
         recipe: {},
-        saved: false,
       };
     },
+    methods: {
+      ...mapActions([
+        'addIngredient'
+      ])
+    },
     created() {
-      if(this.$route.params.type === 'fresh'){
-        this.recipe = this.recipes.randomRecipes.find((x) => x.id === parseInt(this.$route.params.id));
-      }else if(this.$route.params.type === 'saved') {
-        this.saved = true;
+      // if(this.$route.params.type === 'fresh'){
+      //   this.recipe = this.recipes.randomRecipes.find((x) => x.id === parseInt(this.$route.params.id));
+      // }else if(this.$route.params.type === 'saved') {
         //we need to iterate over the recipes object in state to look through every item in each category to find the matching recipe by id so we can display it
         Object.values(this.recipes).forEach(category => {
           if(category.length){
@@ -57,13 +61,18 @@ export default {
             }
           }
         });
-      }
+      // }
     },
 };
 
 </script>
 
 <style scoped lang="scss">
+button {
+  padding: 0 4px;
+  box-shadow: none;
+  margin: 5px;
+}
 ul {
     text-align: left;
 }
@@ -90,4 +99,5 @@ h1 {
         font-weight: bold;
     }
 }
+
 </style>
