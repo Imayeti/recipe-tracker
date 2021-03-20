@@ -3,6 +3,7 @@ export default {
         commit('appendRecipe', recipe)
     },
     deleteRecipe: ({commit}, recipe) => {
+      console.log(recipe);
         commit('removeRecipe', recipe)
     },
     getRandomRecipes: ({commit}) => {
