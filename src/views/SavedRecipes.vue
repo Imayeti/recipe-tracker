@@ -9,6 +9,7 @@
       <List title="Dinner" />
     </div>
     
+    <!-- <List title="Unassigned" /> -->
     <div class="saved-recipes">
       <draggable v-model="savedRecipes"  group="people">
           <div  

@@ -5,12 +5,12 @@ export default {
     deleteRecipe: ({commit}, recipe) => {
       commit('removeRecipe', recipe)
     },
-    addIngredient: ({commit}, ingredient) => {
-      commit('appendIngredient', ingredient)
+    addIngredient: ({commit}, recipeAndIngredient) => {
+      commit('appendIngredient', recipeAndIngredient)
     },
-    deleteIngredient: ({commit}, ingredient) => {
-      console.log(ingredient);
-      commit('removeIngredient', ingredient)
+    deleteIngredient: ({commit}, recipeAndIngredient) => {
+      console.log('recipeAndIngredientin deletelte action', recipeAndIngredient);
+      commit('removeIngredient', recipeAndIngredient)
     },
     getRandomRecipes: ({commit}) => {
         let randomRecipes = [];

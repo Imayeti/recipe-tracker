@@ -1,22 +1,37 @@
+import Vue from 'vue';
+
 function findIndexOfItem(stateItemListName, recipe) {
   const recipeToDelete = stateItemListName.find((x) => x.id === recipe.id);
   const index = stateItemListName.indexOf(recipeToDelete);
   return index;
 }
 
-
-
 export default {
-    appendIngredient: (state, ingredient) => {
-      state.ingredientsList.push(ingredient);
+    appendIngredient: (state, {ingredient, recipe}) => {
+      // if ingredients from the recipe haven't been added yet, we create the array that we can push all ingredients to 
+      if(!state.ingredientsList[recipe.title]) {
+        //need to use Vue.set because we are adding a new key and without Vue.set it will not be reactive
+        Vue.set(state.ingredientsList, recipe.title, [])
+      }
+      // make sure to only add it if it doens't exist to avoid duplicates
+      if(findIndexOfItem(state.ingredientsList[recipe.title],ingredient) === -1) {
+        state.ingredientsList[recipe.title].push(ingredient);
+      }
+      
     },   
-    removeIngredient: (state, ingredient) => {
-      let index = findIndexOfItem(state.ingredientsList, ingredient);
-      state.ingredientsList.splice(index, 1);
+    removeIngredient: (state, {ingredient, recipeName}) => {
+      if(state.ingredientsList[recipeName]){
+        let index = findIndexOfItem(state.ingredientsList[recipeName], ingredient);
+        state.ingredientsList[recipeName].splice(index, 1);
+      }
+      // if recipeName is an empty array because all it's ingredients have been deleted, just delete it completely
+      if (!state.ingredientsList[recipeName].length) {
+        delete state.ingredientsList[recipeName];
+      }
     },
     appendRecipe: (state, recipe) => {
       let recipeSearchResult;
-      //make sure recipe doesn't already exist in one of the save lists, to prevent duplicates
+      //make sure recipe doesn't already exist in one of the saved lists, to prevent duplicates
       Object.keys(state.recipes).forEach(key => {
         if(state.recipes[key].length && key !== 'randomRecipes'){
           recipeSearchResult = state.recipes[key].find((x) => x.id === parseInt(recipe.id));
@@ -29,6 +44,7 @@ export default {
       }
     },
     removeRecipe: (state, recipe) => {
+        // delete recipe from appropritate list
         if (recipe.category === 'unassigned'){
           let index = findIndexOfItem(state.recipes.savedRecipes, recipe);
           state.recipes.savedRecipes.splice(index, 1);
@@ -43,15 +59,11 @@ export default {
           state.recipes.savedDinnerRecipes.splice(index, 1);
         }
 
-
         let randomRecipeIndex = findIndexOfItem(state.recipes.randomRecipes, recipe);
-        console.log(randomRecipeIndex);
-        //before trying to delete, make sure recipe exists in state.recipes.randomRecipes incase user refreshed random recipes
+        //before trying to change the value of saved on the randomRecipe, make sure the recipe exists in state.recipes.randomRecipes incase user refreshed random recipes
         if (randomRecipeIndex != -1){
           state.recipes.randomRecipes[randomRecipeIndex].saved = false;
         }
-       
-       
     },  
     addRandomRecipes: (state, randomRecipes) => {
       randomRecipes.map((recipe) => recipe.category = 'unassigned');
@@ -59,22 +71,20 @@ export default {
     },
     updateSavedRecipesList: (state, savedRecipes) => {
       savedRecipes.map((recipe) => recipe.category = 'unassigned');
-      console.log('savedRecipes',savedRecipes);
-
       state.recipes.savedRecipes = savedRecipes;
     }, 
     updateSavedBreakfastRecipesList: (state, savedBreakfastRecipes) => {
-      console.log('updating breafast list');
+      // console.log('updating breafast list');
       savedBreakfastRecipes.map((recipe) => recipe.category = 'breakfast');
       state.recipes.savedBreakfastRecipes = savedBreakfastRecipes;
     },  
     updateSavedLunchRecipesList: (state, savedLunchRecipes) => {
-      console.log('updating lunch list');
+      // console.log('updating lunch list');
       savedLunchRecipes.map((recipe) => recipe.category = 'lunch');
       state.recipes.savedLunchRecipes = savedLunchRecipes;
     },  
     updateSavedDinnerRecipesList: (state, savedDinnerRecipes) => {
-      console.log('updating Dinner list');
+      // console.log('updating Dinner list');
       savedDinnerRecipes.map((recipe) => recipe.category = 'dinner');
       state.recipes.savedDinnerRecipes = savedDinnerRecipes;
     },

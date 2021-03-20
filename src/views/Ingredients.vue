@@ -2,11 +2,19 @@
   <div id="your-ingredients" class="container">
     <h1>Your Ingredients</h1>
     <div class="small-hr"></div>
-    <ol>
-      <li  v-for="ingredient in ingredientsList" :key="ingredient.original">
-        {{ingredient.original}} <button class="delete-button" @click="deleteIngredient(ingredient)">X</button>
-      </li>
-    </ol>
+    <div class="ingredients-list">
+      <div v-for="(ingredients, recipeName) in ingredientsList" :key="recipeName">
+      <h4>{{recipeName}}</h4>
+      <ol>
+        <li v-for="(ingredient, index) in ingredients" :key="ingredient.id + index">
+          <!-- {{index}} -->
+          {{ingredient.original}}<button class="delete-button" @click="deleteIngredient({ingredient, recipeName})">X</button>
+        </li>
+      </ol>
+    </div>
+ 
+    </div>
+   
   </div>
 </template>
 
@@ -14,7 +22,7 @@
 import {  mapActions, mapState } from 'vuex'
 
 export default {
-    computed: {
+  computed: {
     ...mapState([
       'ingredientsList'
     ])
@@ -28,12 +36,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-ol {
-  max-width: 500px;
+.ingredients-list {
+  max-width: 700px;
   margin: calc(20px + 1vw) auto;
+}
+ol {
   text-align: left;
 }
 li {
   display: block;
+}
+h4 {
+  text-align: left;
 }
 </style>

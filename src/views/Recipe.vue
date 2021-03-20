@@ -12,7 +12,7 @@
       <h4>Ingredients</h4>
       <ol>
         <li  v-for="ingredient in recipe.extendedIngredients" :key="ingredient.id">
-          <button @click="addIngredient(ingredient)">Add</button>{{ingredient.original}} 
+          <button @click="addIngredient({ingredient, recipe})">Add</button>{{ingredient.original}} 
         </li>
       </ol>
       <h4>Instructions</h4>

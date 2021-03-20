@@ -9,7 +9,13 @@
           </span>
         </transition>
       </router-link> 
-      <router-link class="nav--link" to="/ingredients">Ingredients </router-link>
+      <router-link class="nav--link" to="/ingredients">Shopping List 
+        <transition name="slide-fade" mode="out-in">
+          <span :key="ingredientsCount">
+            ({{ingredientsCount}})
+          </span>
+        </transition>
+      </router-link>
     </div>
     <router-view/>
   </div>
@@ -28,11 +34,12 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'recipesCount'
+      'recipesCount',
+      'ingredientsCount',
     ])
   },
   created() {
-    this.getRandomRecipes();
+    // this.getRandomRecipes();
   },
 };
 
@@ -46,6 +53,12 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  a {
+    color: #129b9d;
+    &:hover {
+      color: #129b9d;
+    }
+  }
 }
 
 #nav {
@@ -54,7 +67,7 @@ export default {
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #0d653d;
+  background-color: #129b9d;
   color: white;
   .nav--link {
     padding: 10px calc(10px + .3vw);
@@ -68,12 +81,12 @@ export default {
     color: white;
     text-decoration: none;
     &.router-link-exact-active {
-      color: #beffe2;
+      color: #d1feff;
       text-decoration: underline;
     }
     &:hover {
       transition: ease all .2s !important;
-      color: #beffe2;
+      color: #d1feff;
       text-decoration: underline;
     }
   }
@@ -88,11 +101,7 @@ export default {
     opacity: 0;
   }
 }
-a {
-  &:hover {
-    color: #42b983;
-  }
-}
+
 h1 {
   margin: 0;
 }
@@ -103,14 +112,14 @@ img {
 button {
   box-shadow: 2px 2px 8px 1px rgb(184, 184, 184);
   padding: 10px 15px;
-  background-color: #42b983;
+  background-color: #30bfc2;
   border: none;
   color: white;
   font-weight: bold;
   font-size: calc(16px + .1vw);
   transition: ease all .2s;
   &:hover {
-    background-color: #5dcb99;
+    background-color: #68cecf;
     cursor: pointer;
   }
   &:focus {outline:0;}
@@ -129,7 +138,7 @@ button {
 .container {
   max-width: 900px;
   margin: 0 auto;
-  padding: calc(50px + 5vw)  calc(20px + 1vw);
+  padding: calc(70px + 5vw)  calc(20px + 1vw);
 }
 .small-hr {
   margin: 0 auto;

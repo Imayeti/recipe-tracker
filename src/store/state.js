@@ -1,13 +1,13 @@
-// import randomRecipes from '../data/recipes'
+import randomRecipes from '../data/recipes'
 
 export default {
   recipes: {
-    randomRecipes: [],
+    randomRecipes: randomRecipes.recipes,
     savedBreakfastRecipes: [],
     savedLunchRecipes: [],
     savedDinnerRecipes: [],
     savedRecipes: [],
   },
-  ingredientsList: [],
+  ingredientsList: {},
 }
     

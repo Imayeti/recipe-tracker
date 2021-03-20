@@ -7,5 +7,12 @@ export default {
       }
     });
     return totalCount;
-  }
+  },
+  ingredientsCount: (state) => {
+    let totalCount = 0;
+    Object.keys(state.ingredientsList).forEach(key => {
+      totalCount += state.ingredientsList[key].length;  
+    });
+    return totalCount;
+  },
 }
