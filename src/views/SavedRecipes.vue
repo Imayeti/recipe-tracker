@@ -1,19 +1,58 @@
 <template>
   <div class="container">
     <h1>Your Recipes</h1>
-    <draggable  v-model="savedBreakfastRecipes" group="people">
-      <div  
-        v-for="recipe in savedBreakfastRecipes" 
-        :key="recipe.id"
-      >
-        <div class="saved-recipe-inner">
-          <span><i class="fas fa-expand-arrows-alt"></i></span>
-          <router-link class="recipe-title" :to="`/recipe/saved/${recipe.id}`">{{recipe.title}}</router-link>
-          <button @click="deleteRecipe(recipe, 'breakfast')">X</button>
+    <div class="small-hr mb-4"></div>
+
+    <div class="row">
+      <div class="col-12 col-md-4 list-card ">
+          <h5 class="pt-2">Breakfast</h5>
+          <draggable class="list" v-model="savedBreakfastRecipes" group="people">
+            <div  
+              v-for="recipe in savedBreakfastRecipes" 
+              :key="recipe.id"
+            >
+              <div class="saved-recipe-inner">
+                <span><i class="fas fa-expand-arrows-alt"></i></span>
+                <router-link class="recipe-title" :to="`/recipe/saved/${recipe.id}`">{{recipe.title}}</router-link>
+                <button @click="deleteRecipe(recipe, 'breakfast')">X</button>
+              </div>
+            </div>
+          </draggable>
         </div>
-      </div>
-    </draggable>
-    <div class="small-hr"></div>
+        <div class="col-12 col-md-4 list-card ">
+          <h5 class="pt-2">Lunch</h5>
+          <draggable class="list" v-model="savedLunchRecipes" group="people">
+            <div  
+              v-for="recipe in savedLunchRecipes" 
+              :key="recipe.id"
+            >
+              <div class="saved-recipe-inner">
+                <span><i class="fas fa-expand-arrows-alt"></i></span>
+                <router-link class="recipe-title" :to="`/recipe/saved/${recipe.id}`">{{recipe.title}}</router-link>
+                <button @click="deleteRecipe(recipe, 'lunch')">X</button>
+              </div>
+            </div>
+          </draggable>
+        </div>
+        <div class="col-12 col-md-4 list-card ">
+          <h5 class="pt-2">Dinner</h5>
+          <draggable class="list" v-model="savedDinnerRecipes" group="people">
+            <div  
+              v-for="recipe in savedDinnerRecipes" 
+              :key="recipe.id"
+            >
+              <div class="saved-recipe-inner">
+                <span><i class="fas fa-expand-arrows-alt"></i></span>
+                <router-link class="recipe-title" :to="`/recipe/saved/${recipe.id}`">{{recipe.title}}</router-link>
+                <button @click="deleteRecipe(recipe, 'dinner')">X</button>
+              </div>
+            </div>
+          </draggable>
+        </div>
+    </div>
+    
+
+    
     <div class="saved-recipes">
       <draggable v-model="savedRecipes"  group="people">
           <div  
@@ -61,6 +100,22 @@ export default {
           this.$store.commit('updateSavedBreakfastRecipesList', value)
         }
       },
+      savedLunchRecipes: {
+        get() {
+          return this.$store.state.savedLunchRecipes
+        },
+        set(value) {
+          this.$store.commit('updateSavedLunchRecipesList', value)
+        }
+      },
+      savedDinnerRecipes: {
+        get() {
+          return this.$store.state.savedDinnerRecipes
+        },
+        set(value) {
+          this.$store.commit('updateSavedDinnerRecipesList', value)
+        }
+      },
     },
     methods: {
       ...mapActions([
@@ -74,41 +129,60 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-    button {
-      box-shadow: none;
-      transition: ease all .2s;
-      padding: 2px 6px;
-      background-color: transparent;
-      color: rgb(157, 29, 0);
-      &:hover {
-        background-color: rgb(255, 190, 175);
-        cursor: pointer;
-      }
+  button {
+    box-shadow: none;
+    transition: ease all .2s;
+    padding: 2px 6px;
+    background-color: transparent;
+    color: rgb(157, 29, 0);
+    &:hover {
+      background-color: rgb(255, 190, 175);
+      cursor: pointer;
     }
-    .saved-recipes {
-      margin-top: calc(25px + 2vw) ;
-    }
+  }
+  .container {
+    max-width: 100vw;
+    padding: calc(50px + 5vw) calc(30px + 1vw);
+  }
+  .list-card {
+    
+    
+  }
+  .list {
+    border-radius: 25px;
+    border: 1px solid rgb(189, 189, 189);
+    min-height: 100px;
     .saved-recipe-inner {
-      display: inline-block;
-      font-size: calc(18px + .2vw);
-      position: relative;
-      transition: ease all .2s;
-      padding: calc(5px + .4vw) 0;
-      font-weight: bold;
-      padding: calc(5px + .4vw);
+      font-size: calc(15px + .1vw);
       i {
-        color: rgb(223, 223, 223);
-        font-size: calc(10px + .4vw);
-        position: relative;
-        left: -5px; 
-      }
-      .recipe-title {
-        padding: calc(5px + .2vw);
-          &:hover {
-            background-color: #dcffef;
-        }
+        left: -2px; 
       }
     }
+  }
+  .saved-recipes {
+    margin-top: calc(25px + 2vw) ;
+  }
+  .saved-recipe-inner {
+    display: inline-block;
+    font-size: calc(18px + .2vw);
+    position: relative;
+    transition: ease all .2s;
+    padding: calc(5px + .4vw) 0;
+    font-weight: bold;
+    padding: calc(5px + .4vw);
+    i {
+      color: rgb(223, 223, 223);
+      font-size: calc(10px + .4vw);
+      position: relative;
+      left: -5px; 
+    }
+    .recipe-title {
+      padding: calc(5px + .2vw);
+        &:hover {
+          background-color: #dcffef;
+      }
+    }
+  }
 </style>
 
 

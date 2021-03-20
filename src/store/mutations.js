@@ -41,5 +41,15 @@ export default {
       console.log('updating breafast list');
       savedBreakfastRecipes.map((recipe) => recipe.category = 'breakfast');
       state.savedBreakfastRecipes = savedBreakfastRecipes;
+    },  
+    updateSavedLunchRecipesList: (state, savedLunchRecipes) => {
+      console.log('updating lunch list');
+      savedLunchRecipes.map((recipe) => recipe.category = 'lunch');
+      state.savedLunchRecipes = savedLunchRecipes;
+    },  
+    updateSavedDinnerRecipesList: (state, savedDinnerRecipes) => {
+      console.log('updating Dinner list');
+      savedDinnerRecipes.map((recipe) => recipe.category = 'dinner');
+      state.savedDinnerRecipes = savedDinnerRecipes;
     },
 }
