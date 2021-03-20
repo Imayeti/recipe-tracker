@@ -107,7 +107,7 @@ export default {
     .list {
       border-radius: 25px;
       border: 1px solid rgb(189, 189, 189);
-      min-height: 100px;
+      min-height: 50px;
       .saved-recipe-inner {
         font-size: calc(15px + .1vw);
         i {
