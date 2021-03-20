@@ -12,7 +12,6 @@ export default {
         .then(response => response.json())
         .then(
           data => {
-            console.log('random recipe', data);
             randomRecipes = data.recipes;
             commit('addRandomRecipes', randomRecipes)
           }

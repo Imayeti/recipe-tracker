@@ -4,19 +4,19 @@
     <img :src="recipe.image" alt="">
     <p v-html="recipe.summary"></p>
     <div class="short-info">
-        <p>Dairy Free: {{recipe.dairyFree ? 'Yes' : 'No'}}</p>
-        <p>Gluten Free: {{recipe.glutenFree ? 'Yes' : 'No'}}</p>
-        <p>Health Score: {{recipe.healthScore}}</p>
+      <p>Dairy Free: {{recipe.dairyFree ? 'Yes' : 'No'}}</p>
+      <p>Gluten Free: {{recipe.glutenFree ? 'Yes' : 'No'}}</p>
+      <p>Health Score: {{recipe.healthScore}}</p>
     </div>
     <div class="lower-text">
-        <h4>Ingredients</h4>
-        <ol>
-            <li v-for="ingredient in recipe.extendedIngredients" :key="ingredient.id">
-                {{ingredient.original}}
-            </li>
-        </ol>
-        <h4>Instructions</h4>
-        <p  v-html="recipe.instructions"></p>
+      <h4>Ingredients</h4>
+      <ol>
+        <li v-for="ingredient in recipe.extendedIngredients" :key="ingredient.id">
+          {{ingredient.original}}
+        </li>
+      </ol>
+      <h4>Instructions</h4>
+      <p  v-html="recipe.instructions"></p>
     </div>
     <SaveRecipeButton :saved="saved" :recipe="recipe" />
   </div>
@@ -30,30 +30,34 @@ import SaveRecipeButton from '@/components/SaveRecipeButton.vue';
 export default {
     name: 'MainBoard',
     components: {
-        SaveRecipeButton
+      SaveRecipeButton
     },
     computed: {
-    ...mapState([
-        'randomRecipes',
-        'savedRecipes'
-    ])
+      ...mapState([
+        'recipes',
+      ])
     },
     data() {
-        return {
-            recipe: {},
-            saved: false,
-            
-        };
+      return {
+        recipe: {},
+        saved: false,
+      };
     },
     created() {
-        if(this.$route.params.type === 'fresh'){
-            this.recipe = this.randomRecipes.find((x) => x.id === parseInt(this.$route.params.id));
-        }else if(this.$route.params.type === 'saved') {
-            this.saved = true;
-            this.recipe = this.savedRecipes.find((x) => x.id === parseInt(this.$route.params.id));
-        }
-    },
-    methods: {
+      if(this.$route.params.type === 'fresh'){
+        this.recipe = this.recipes.randomRecipes.find((x) => x.id === parseInt(this.$route.params.id));
+      }else if(this.$route.params.type === 'saved') {
+        this.saved = true;
+        //we need to iterate over the recipes object in state to look through every item in each category to find the matching recipe by id so we can display it
+        Object.values(this.recipes).forEach(category => {
+          if(category.length){
+            let recipeSearchResult = category.find((x) => x.id === parseInt(this.$route.params.id));
+             if (recipeSearchResult) {
+                this.recipe = recipeSearchResult;
+            }
+          }
+        });
+      }
     },
 };
 

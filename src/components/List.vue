@@ -39,7 +39,7 @@ export default {
     },
     recipes: {
       get() {
-        return this.$store.state[this.storeListName]
+        return this.$store.state.recipes[this.storeListName]
       },
       set(value) {
         this.$store.commit(this.updateMethodName, value)

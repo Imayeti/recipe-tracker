@@ -1,5 +1,11 @@
 export default {
-    recipesCount: (state) => {
-        return state.savedRecipes.length;
-    }
+  recipesCount: (state) => {
+    let totalCount = 0;
+    Object.keys(state.recipes).forEach(key => {
+      if (key != 'randomRecipes') {
+        totalCount += state.recipes[key].length;  
+      }
+    });
+    return totalCount;
+  }
 }

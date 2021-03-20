@@ -40,11 +40,11 @@ export default {
     },
     computed: {
       ...mapState([
-        'randomRecipes',
+        'recipes',
       ]),
       savedRecipes: {
         get() {
-          return this.$store.state.savedRecipes
+          return this.$store.state.recipes.savedRecipes
         },
         set(value) {
           this.$store.commit('updateSavedRecipesList', value)
@@ -52,7 +52,7 @@ export default {
       },
       savedBreakfastRecipes: {
         get() {
-          return this.$store.state.savedBreakfastRecipes
+          return this.$store.state.recipes.savedBreakfastRecipes
         },
         set(value) {
           this.$store.commit('updateSavedBreakfastRecipesList', value)
@@ -60,7 +60,7 @@ export default {
       },
       savedLunchRecipes: {
         get() {
-          return this.$store.state.savedLunchRecipes
+          return this.$store.state.recipes.savedLunchRecipes
         },
         set(value) {
           this.$store.commit('updateSavedLunchRecipesList', value)
@@ -68,7 +68,7 @@ export default {
       },
       savedDinnerRecipes: {
         get() {
-          return this.$store.state.savedDinnerRecipes
+          return this.$store.state.recipes.savedDinnerRecipes
         },
         set(value) {
           this.$store.commit('updateSavedDinnerRecipesList', value)

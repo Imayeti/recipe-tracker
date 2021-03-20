@@ -26,16 +26,16 @@ export default {
             this.toggleButtonText();
         },
         toggleButtonText() {
-            console.log('recipe id: ', this.recipe.id);
-            console.log('this.savedRecipes: ',this.savedRecipes);
-            if(this.savedRecipes.find((x) => x.id === this.recipe.id)){
+            // console.log('recipe id: ', this.recipe.id);
+            // console.log('this.recipes.savedRecipes: ',this.recipes.savedRecipes);
+            if(this.recipes.savedRecipes.find((x) => x.id === this.recipe.id)){
                 this.buttonText = "Recipe Saved!";
             } 
         }
     },
     computed: {
         ...mapState([
-            'savedRecipes',
+            'recipes',
         ]),
     },
     mounted() {

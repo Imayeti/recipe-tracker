@@ -5,7 +5,7 @@
       <button @click="getRandomRecipes">Get Fresh Recipes!!</button>
 
       <div class="big-hr"></div>
-      <RandomRecipes :randomRecipes="randomRecipes" />
+      <RandomRecipes :randomRecipes="recipes.randomRecipes" />
     </div>
   </div>
 
@@ -25,28 +25,8 @@ export default {
   },
   computed: {
     ...mapState([
-      'randomRecipes',
-      'savedRecipes'
+      'recipes',
     ])
-  },
-  data() {
-    return {
-      myArray: [
-        
-        {
-          name: 'hi',
-          id:1
-        },
-        {
-          name: 'hello',
-          id:2
-        },
-         {
-          name: 'wassup',
-          id:3
-        }
-      ],
-    };
   },
   methods: {
     ...mapActions([
