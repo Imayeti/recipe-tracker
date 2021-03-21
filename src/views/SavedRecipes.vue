@@ -18,12 +18,10 @@
     </div>
     
     <div class="unassigned row mt-5">
-      <div class="col"></div>
-      <div class="col-12 col-lg-4">
+      <div class="col-12">
         <List title="Unassigned" />
       </div>
    
-      <div class="col"></div>
     </div>
 
     <!-- <div class="saved-recipes">

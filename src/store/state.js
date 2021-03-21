@@ -8,7 +8,7 @@ export default {
     savedDinnerRecipes: [],
     savedUnassignedRecipes: [],
   },
-  ingredientsList: {},
+  shoppingList: {},
   tags: {
     "gluten free" : false,
     "vegetarian" : false, 

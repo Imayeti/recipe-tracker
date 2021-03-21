@@ -61,6 +61,7 @@ export default {
 
 <style lang="scss" scoped>
   .filter-checkboxes {
+    margin: calc(25px + 2vw) 0 calc(12px + .5vw) ;
     .checkbox-container {
       margin: calc(10px + .2vw);
       display: inline-block;

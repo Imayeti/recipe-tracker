@@ -36,7 +36,7 @@ export default {
   computed: {
     ...mapState([
       'recipes',
-      'ingredientsList'
+      'shoppingList'
     ])
   },
   data() {

@@ -2,7 +2,7 @@
   <div>
 
     <div class="main-board">
-      <button @click="getRandomRecipes">Get Fresh Recipes!!</button>
+      <button @click="getRandomRecipes">Get Fresh Recipes!</button>
 
       <div class="big-hr"></div>
       <RandomRecipes :randomRecipes="recipes.randomRecipes" />
@@ -54,9 +54,7 @@ li {
 a {
   color: #42b983;
 }
-.main-board {
-  margin-top: calc(25px + 2vw);
-}
+
 </style>
 
 

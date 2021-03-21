@@ -1,22 +1,42 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link class="nav--link" to="/">Home</router-link> 
-      <router-link class="nav--link" to="/saved-recipes">Your Recipes
-        <transition name="slide-fade" mode="out-in">
-          <span :key="recipesCount">
-            ({{recipesCount}})
-          </span>
-        </transition>
-      </router-link> 
-      <router-link class="nav--link" to="/ingredients">Shopping List 
-        <transition name="slide-fade" mode="out-in">
-          <span :key="ingredientsCount">
-            ({{ingredientsCount}})
-          </span>
-        </transition>
-      </router-link>
-    </div>
+    <nav id="nav" class="navbar navbar-expand-md ">
+      <a class="navbar-brand" href="#"> <i class="fas fa-utensils"></i></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
+      </button>
+
+      <div class="collapse navbar-collapse d-md-flex justify-content-center" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item p-2 p-md-0 active">
+            <router-link class="nav--link" to="/">Home</router-link> 
+          </li>
+          <li class="nav-item p-2 p-md-0">
+             <router-link class="nav--link" to="/saved-recipes">Your Recipes
+              <transition name="slide-fade" mode="out-in">
+                <span :key="recipesCount">
+                  ({{recipesCount}})
+                </span>
+              </transition>
+            </router-link> 
+          </li>
+          <li class="nav-item p-2 p-md-0">
+             <router-link class="nav--link" to="/shoppinglist">Shopping List 
+              <transition name="slide-fade" mode="out-in">
+                <span :key="ingredientsCount">
+                  ({{ingredientsCount}})
+                </span>
+              </transition>
+            </router-link>
+          </li>
+        </ul>
+
+        
+     
+     
+      
+      </div>
+    </nav>
     <router-view/>
   </div>
 </template>
@@ -101,7 +121,6 @@ export default {
     opacity: 0;
   }
 }
-
 h1 {
   margin: 0;
 }
@@ -153,5 +172,13 @@ button {
   height: 1px;
   background-color: #d8d8d8;
   display: inline-block;
+}
+.navbar-toggler {
+  border: 2px solid white;
+  box-shadow: none;
+}
+.navbar-toggler-icon {
+  height: 100%;
+  width: 100%;
 }
 </style>

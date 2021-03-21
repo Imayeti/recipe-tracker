@@ -21,24 +21,24 @@ export default {
   },
   appendIngredient: (state, {ingredient, recipe}) => {
     // if ingredients from the recipe haven't been added yet, we create the array that we can push all ingredients to 
-    if(!state.ingredientsList[recipe.title]) {
+    if(!state.shoppingList[recipe.title]) {
       //need to use Vue.set because we are adding a new key and without Vue.set it will not be reactive
-      Vue.set(state.ingredientsList, recipe.title, [])
+      Vue.set(state.shoppingList, recipe.title, [])
     }
     // make sure to only add it if it doens't exist to avoid duplicates
-    if(findIndexOfItem(state.ingredientsList[recipe.title],ingredient) === -1) {
-      state.ingredientsList[recipe.title].push(ingredient);
+    if(findIndexOfItem(state.shoppingList[recipe.title],ingredient) === -1) {
+      state.shoppingList[recipe.title].push(ingredient);
     }
     
   },   
   removeIngredient: (state, {ingredient, recipeName}) => {
-    if(state.ingredientsList[recipeName]){
-      let index = findIndexOfItem(state.ingredientsList[recipeName], ingredient);
-      state.ingredientsList[recipeName].splice(index, 1);
+    if(state.shoppingList[recipeName]){
+      let index = findIndexOfItem(state.shoppingList[recipeName], ingredient);
+      state.shoppingList[recipeName].splice(index, 1);
     }
     // if recipeName is an empty array because all it's ingredients have been deleted, just delete it completely
-    if (!state.ingredientsList[recipeName].length) {
-      delete state.ingredientsList[recipeName];
+    if (!state.shoppingList[recipeName].length) {
+      delete state.shoppingList[recipeName];
     }
   },
   appendRecipe: (state, recipe) => {

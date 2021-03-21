@@ -1,9 +1,9 @@
 <template>
   <div id="your-ingredients" class="container">
-    <h1>Your Ingredients</h1>
+    <h1>Shopping List</h1>
     <div class="small-hr"></div>
     <div class="ingredients-list">
-      <div v-for="(ingredients, recipeName) in ingredientsList" :key="recipeName">
+      <div v-for="(ingredients, recipeName) in shoppingList" :key="recipeName">
       <h4>{{recipeName}}</h4>
       <ol>
         <li v-for="(ingredient, index) in ingredients" :key="ingredient.id + index">
@@ -24,7 +24,7 @@ import {  mapActions, mapState } from 'vuex'
 export default {
   computed: {
     ...mapState([
-      'ingredientsList'
+      'shoppingList'
     ])
   },
   methods: {

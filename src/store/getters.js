@@ -10,8 +10,8 @@ export default {
   },
   ingredientsCount: (state) => {
     let totalCount = 0;
-    Object.keys(state.ingredientsList).forEach(key => {
-      totalCount += state.ingredientsList[key].length;  
+    Object.keys(state.shoppingList).forEach(key => {
+      totalCount += state.shoppingList[key].length;  
     });
     return totalCount;
   },

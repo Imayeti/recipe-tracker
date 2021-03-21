@@ -3,7 +3,7 @@ import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import Recipe from '../views/Recipe.vue';
 import SavedRecipes from '../views/SavedRecipes.vue';
-import Ingredients from '../views/Ingredients.vue';
+import ShoppingList from '../views/ShoppingList.vue';
 
 Vue.use(VueRouter);
 
@@ -24,9 +24,9 @@ const routes = [
     component: Recipe,
   }, 
   {
-    path: '/ingredients',
-    name: 'Ingredients',
-    component: Ingredients,
+    path: '/shoppinglist',
+    name: 'ShoppingList',
+    component: ShoppingList,
   },
 ];
 
