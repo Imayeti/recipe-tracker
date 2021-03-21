@@ -25,7 +25,7 @@ import { mapActions  } from 'vuex'
 export default {
   name: 'List',
   components: {
-    draggable
+    draggable,
   },
   props: {
     title: String,

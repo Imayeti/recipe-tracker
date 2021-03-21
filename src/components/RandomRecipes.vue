@@ -1,11 +1,11 @@
 <template>
     <div>
       <div class="random-recipe" v-for="recipe in randomRecipes" :key="recipe.title">
-          <h2>{{recipe.title}}</h2> 
-          <p><router-link :to="`/recipe/fresh/${recipe.id}`">View Full Recipe</router-link></p>
-          <img class="mb-3" :src="recipe.image" alt="">
-          <p v-html="recipe.summary"></p>
-          <SaveRecipeButton :recipe="recipe" />
+        <h2>{{recipe.title}}</h2> 
+        <p><router-link :to="`/recipe/fresh/${recipe.id}`">View Full Recipe</router-link></p>
+        <img class="mb-3" :src="recipe.image" alt="">
+        <p v-html="recipe.summary"></p>
+        <SaveRecipeButton :recipe="recipe" />
       </div>
     </div>
 </template>
@@ -18,7 +18,7 @@ import SaveRecipeButton from '@/components/SaveRecipeButton.vue';
 export default {
   name: 'RandomRecipes',
   components: {
-      SaveRecipeButton,
+    SaveRecipeButton,
   },
   props: {
     randomRecipes: Array,
@@ -32,14 +32,10 @@ export default {
       'addRecipe',
     ]),
   },
-  mounted() {
-  },
-
 };
 
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
     .random-recipe {
         border-bottom: 1px solid rgb(216, 216, 216);

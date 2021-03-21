@@ -1,16 +1,11 @@
 <template>
   <div>
-
     <div class="main-board">
       <button @click="getRandomRecipes">Get Fresh Recipes!</button>
-
       <div class="big-hr"></div>
       <RandomRecipes :randomRecipes="recipes.randomRecipes" />
     </div>
   </div>
-
-
-
 </template>
 
 <script>

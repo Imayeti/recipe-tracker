@@ -2,7 +2,6 @@
   <div id="your-recipes" class="container">
     <h1>Your Recipes</h1>
     <div class="small-hr mb-4"></div>
-
     <div class="row">
       <div class="col-12 col-lg-4">
         <List title="Breakfast" />
@@ -13,89 +12,68 @@
       <div class="col-12 col-lg-4">
         <List title="Dinner" />
       </div>
-      
-   
     </div>
-    
     <div class="unassigned row mt-5">
       <div class="col-12">
         <List title="Unassigned" />
       </div>
-   
     </div>
-
-    <!-- <div class="saved-recipes">
-      <draggable v-model="savedRecipes"  group="people">
-          <div  
-            v-for="recipe in savedRecipes" 
-            :key="recipe.id"
-          >
-            <div class="saved-recipe-inner">
-              <span><i class="fas fa-expand-arrows-alt"></i></span>
-              <router-link class="recipe-title" :to="`/recipe/saved/${recipe.id}`">{{recipe.title}}</router-link>
-              <button class="delete-button" @click="deleteRecipe(recipe)">X</button>
-            </div>
-          </div>
-        </draggable>
-    </div> -->
   </div>
 </template>
 
 <script>
 
 import {  mapState, mapActions  } from 'vuex'
-// import draggable from 'vuedraggable'
 import List from '@/components/List.vue';
 
 export default {
-    name: 'SavedRecipes',
-    components: {
-        // draggable,
-        List
+  name: 'SavedRecipes',
+  components: {
+      List,
+  },
+  computed: {
+    ...mapState([
+      'recipes',
+    ]),
+    savedUnassignedRecipes: {
+      get() {
+        return this.$store.state.recipes.savedUnassignedRecipes
+      },
+      set(value) {
+        this.$store.commit('updateSavedUnassignedRecipesList', value)
+      }
     },
-    computed: {
-      ...mapState([
-        'recipes',
-      ]),
-      savedUnassignedRecipes: {
-        get() {
-          return this.$store.state.recipes.savedUnassignedRecipes
-        },
-        set(value) {
-          this.$store.commit('updateSavedUnassignedRecipesList', value)
-        }
+    savedBreakfastRecipes: {
+      get() {
+        return this.$store.state.recipes.savedBreakfastRecipes
       },
-      savedBreakfastRecipes: {
-        get() {
-          return this.$store.state.recipes.savedBreakfastRecipes
-        },
-        set(value) {
-          this.$store.commit('updateSavedBreakfastRecipesList', value)
-        }
-      },
-      savedLunchRecipes: {
-        get() {
-          return this.$store.state.recipes.savedLunchRecipes
-        },
-        set(value) {
-          this.$store.commit('updateSavedLunchRecipesList', value)
-        }
-      },
-      savedDinnerRecipes: {
-        get() {
-          return this.$store.state.recipes.savedDinnerRecipes
-        },
-        set(value) {
-          this.$store.commit('updateSavedDinnerRecipesList', value)
-        }
-      },
+      set(value) {
+        this.$store.commit('updateSavedBreakfastRecipesList', value)
+      }
     },
-    methods: {
-      ...mapActions([
-        'addRecipe',
-        'deleteRecipe'
-      ]),
+    savedLunchRecipes: {
+      get() {
+        return this.$store.state.recipes.savedLunchRecipes
+      },
+      set(value) {
+        this.$store.commit('updateSavedLunchRecipesList', value)
+      }
     },
+    savedDinnerRecipes: {
+      get() {
+        return this.$store.state.recipes.savedDinnerRecipes
+      },
+      set(value) {
+        this.$store.commit('updateSavedDinnerRecipesList', value)
+      }
+    },
+  },
+  methods: {
+    ...mapActions([
+      'addRecipe',
+      'deleteRecipe'
+    ]),
+  },
 };
 
 </script>

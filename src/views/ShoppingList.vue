@@ -4,17 +4,14 @@
     <div class="small-hr"></div>
     <div class="ingredients-list">
       <div v-for="(ingredients, recipeName) in shoppingList" :key="recipeName">
-      <h4>{{recipeName}}</h4>
-      <ol>
-        <li v-for="(ingredient, index) in ingredients" :key="ingredient.id + index">
-          <!-- {{index}} -->
-          {{ingredient.original}}<button class="delete-button" @click="deleteIngredient({ingredient, recipeName})">X</button>
-        </li>
-      </ol>
+        <h4>{{recipeName}}</h4>
+        <ol>
+          <li v-for="(ingredient, index) in ingredients" :key="ingredient.id + index">
+            {{ingredient.original}}<button class="delete-button" @click="deleteIngredient({ingredient, recipeName})">X</button>
+          </li>
+        </ol>
+      </div>
     </div>
- 
-    </div>
-   
   </div>
 </template>
 
