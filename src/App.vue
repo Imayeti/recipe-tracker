@@ -76,6 +76,7 @@ export default {
 }
 
 #nav {
+  z-index: 9;
   padding: 15px;
   position: fixed;
   top: 0;

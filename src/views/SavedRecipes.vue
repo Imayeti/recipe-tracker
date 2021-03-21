@@ -123,6 +123,8 @@ export default {
       border-radius: 25px;
       border: 1px solid rgb(189, 189, 189);
       min-height: 50px;
+      max-height: 400px;
+      overflow-y: scroll;
       .saved-recipe-inner {
         font-size: calc(15px + .1vw);
         i {
