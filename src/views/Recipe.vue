@@ -12,8 +12,8 @@
     <div class="lower-text">
       <h4>Ingredients</h4>
       <ol>
-        <li v-for="ingredient in recipe.extendedIngredients" :key="ingredient.id">
-          <button class="add-button" @click="addIngredient({ingredient, recipe})">Add</button>{{ingredient.original}} 
+        <li v-for="(ingredient, index) in recipe.extendedIngredients" :key="ingredient.id + index">
+          <button class="add-button" @click="addIngredient({ingredient, recipe})">{{addButton(ingredient, recipe)}}</button>{{ingredient.original}} 
         </li>
       </ol>
       <h4 class="p-0">Instructions</h4>
@@ -36,8 +36,9 @@ export default {
   computed: {
     ...mapState([
       'recipes',
-      'shoppingList'
-    ])
+      'shoppingList',
+    ]),
+    
   },
   data() {
     return {
@@ -47,12 +48,20 @@ export default {
   methods: {
     ...mapActions([
       'addIngredient'
-    ])
+    ]),
+    addButton: function (buttonIngredient) {
+      let ingredientSearchResult = false;
+      // check if the ingredient has been added to the shopping list for this recipe specifically to decide what text to show on the button
+      if(this.shoppingList[this.recipe.title]){
+        ingredientSearchResult = this.shoppingList[this.recipe.title].find((x) => x.id === parseInt(buttonIngredient.id));
+      }
+      return ingredientSearchResult ? 'Added' : 'Add'
+    }
   },
   created() {
     //we need to iterate over the recipes object in state to look through every item in each category to find the matching recipe by id so we can display it
     Object.values(this.recipes).forEach(category => {
-      if(category.length){
+      if(category && category.length){
         let recipeSearchResult = category.find((x) => x.id === parseInt(this.$route.params.id));
           if (recipeSearchResult) {
             this.recipe = recipeSearchResult;

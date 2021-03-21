@@ -1,11 +1,10 @@
 <template>
   <div id="app">
     <nav id="nav" class="navbar navbar-expand-md ">
-      <a class="navbar-brand" href="#"> <i class="fas fa-utensils"></i></a>
+      <router-link class="nav--link" to="/"><i class=" text-white fas fa-utensils"></i></router-link>  
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
       </button>
-
       <div class="collapse navbar-collapse d-md-flex justify-content-center" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item p-2 p-md-0 active">
@@ -30,11 +29,6 @@
             </router-link>
           </li>
         </ul>
-
-        
-     
-     
-      
       </div>
     </nav>
     <router-view/>
@@ -59,7 +53,7 @@ export default {
     ])
   },
   created() {
-    // this.getRandomRecipes();
+    this.getRandomRecipes();
   },
 };
 
