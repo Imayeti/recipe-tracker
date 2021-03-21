@@ -1,5 +1,5 @@
 <template>
-  <button v-if="!(this.$route.params.type === 'saved')" @click="addRecipeHandler(recipe)">{{buttonText}}</button> 
+  <button v-if="!(this.$route.params.type === 'saved')" @click="addRecipeHandler(recipe)">{{toggleSaveRecipeButtonText()}}</button> 
 </template>
 
 <script>
@@ -22,10 +22,16 @@ export default {
     ]),
     addRecipeHandler(recipe) {
       this.addRecipe(recipe)
-      this.toggleButtonText();
+      this.toggleSaveRecipeButtonText();
     },
-    toggleButtonText() {
-      this.recipe.saved ? this.buttonText = "Recipe Saved!" : this.buttonText =  "Save Recipe" 
+    toggleSaveRecipeButtonText() {
+      let recipeSearchResult = false;
+      Object.keys(this.recipes).forEach(key => {
+        if(this.recipes[key].length && key !== 'randomRecipes'){
+          recipeSearchResult = this.recipes[key].find((x) => x.id === parseInt(this.recipe.id));
+        }
+      });
+      return recipeSearchResult ? 'Recipe Saved!' : 'Save Recipe'
     }
   },
   computed: {
@@ -34,7 +40,7 @@ export default {
     ]),
   },
   mounted() {
-    this.toggleButtonText();
+    this.toggleSaveRecipeButtonText();
   }
 };
 

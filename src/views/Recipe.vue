@@ -13,7 +13,7 @@
       <h4>Ingredients</h4>
       <ol>
         <li v-for="(ingredient, index) in recipe.extendedIngredients" :key="ingredient.id + index">
-          <button class="add-button" @click="addIngredient({ingredient, recipe})">{{addButton(ingredient, recipe)}}</button>{{ingredient.original}} 
+          <button class="add-button" @click="addIngredient({ingredient, recipe})">{{toggleAddButtonText(ingredient, recipe)}}</button>{{ingredient.original}} 
         </li>
       </ol>
       <h4 class="p-0">Instructions</h4>
@@ -49,7 +49,7 @@ export default {
     ...mapActions([
       'addIngredient'
     ]),
-    addButton: function (buttonIngredient) {
+    toggleAddButtonText: function (buttonIngredient) {
       let ingredientSearchResult = false;
       // check if the ingredient has been added to the shopping list for this recipe specifically to decide what text to show on the button
       if(this.shoppingList[this.recipe.title]){
